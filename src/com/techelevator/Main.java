@@ -1,14 +1,12 @@
 package com.techelevator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     private static HashMap<Character, Integer> map = new HashMap<>();
 
     public static void main(String[] args) {
+        // Populate map for convert()
         map.put('I', 1);
         map.put('V', 5);
         map.put('X', 10);
@@ -17,20 +15,12 @@ public class Main {
         map.put('D', 500);
         map.put('M', 1000);
 
+        //Change map to char array for printRomanNumerals()
         Character[] chars = map.keySet().toArray(new Character[map.size()]);
 
-        /*
-        for (Character ch : map.keySet())
-            System.out.println(ch + "=" + map.get(ch));
 
-         */
-
-
-        List<Map.Entry<Character, Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-//        list.forEach(System.out::println);
-
-
+        // Orders Roman Numerals for printing
+        // Should use TreeMap instead to maintain sorted order by values
         List<Character> sortedRomanNumerals = new ArrayList<>();
 
         sortedRomanNumerals.add('I');
@@ -41,7 +31,7 @@ public class Main {
         sortedRomanNumerals.add('D');
         sortedRomanNumerals.add('M');
 
-        printRomanNumerals(sortedRomanNumerals, "", sortedRomanNumerals.size(), 3);
+        printRomanNumerals(sortedRomanNumerals, "", sortedRomanNumerals.size(), 5);
 
     }
 
@@ -69,6 +59,7 @@ public class Main {
     // Need String to concatenate each combination
     // Need length of string
     // Need Total length of character set
+    // Implementation borrowed from https://www.geeksforgeeks.org/print-all-combinations-of-given-length/
     public static void printRomanNumerals(List list, String prefix, int setLength, int stringLength) {
         //Print a string of length 10 (largest)
         if (stringLength == 0) {
